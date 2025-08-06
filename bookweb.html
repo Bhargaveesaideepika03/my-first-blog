@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>world of books</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>📚 world of book</h1>
+    <p>Fall into stories that love you back 😘</p>
+  </header>
+
+  <section class="genres">
+    <h2>✨ Genres</h2>
+    <div class="genre-list">
+      <button onclick="filterGenre('romance')">Romance</button>
+      <button onclick="filterGenre('mystery')">Mystery</button>
+      <button onclick="filterGenre('fantasy')">Fantasy</button>
+      <button onclick="filterGenre('sci-fi')">Sci-Fi</button>
+    </div>
+  </section>
+
+  <section class="books" id="books-section">
+    <div class="book-card romance">
+      <img src="C:\Users\naidu\OneDrive\Documents\project\ro.jpg" alt="better than movies" class="book-cover" />
+
+      <div class="book-content">
+        <h3>etter than movies</h3>
+        <p><strong>Author:</strong> Lynn painter</p>
+
+        <button class="book-like" onclick="toggleBookLike(this)">🤍 Like Book</button>
+
+        <div class="chapters">
+          <h4>Chapters</h4>
+          <div class="chapter">
+            <p>Chapter 1: The Meeting</p>
+            <button onclick="toggleLike(this)">❤ Like</button>
+          </div>
+          <div class="chapter">
+            <p>Chapter 2: Secrets Revealed</p>
+            <button onclick="toggleLike(this)">❤ Like</button>
+          </div>
+        </div>
+
+        <div class="comments">
+          <h4>Leave a Comment</h4>
+          <textarea placeholder="Share your thoughts..."></textarea>
+          <button onclick="submitComment(this)">Comment</button>
+          <div class="comment-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-card mystery">
+      <img src="C:\Users\naidu\OneDrive\Documents\project\mys.jpg" alt="Shadows of Truth" class="book-cover" />
+
+      <div class="book-content">
+        <h3>🕵 book to die for...</h3>
+        <p><strong>Author:</strong> John Connolly</p>
+
+        <button class="book-like" onclick="toggleBookLike(this)">🤍 Like Book</button>
+
+        <div class="chapters">
+          <h4>Chapters</h4>
+          <div class="chapter">
+            <p>Chapter 1: The Vanishing</p>
+            <button onclick="toggleLike(this)">❤ Like</button>
+          </div>
+        </div>
+
+        <div class="comments">
+          <h4>Leave a Comment</h4>
+          <textarea placeholder="Drop your theory, detective..."></textarea>
+          <button onclick="submitComment(this)">Comment</button>
+          <div class="comment-list"></div>
+        </div>
+      </div>
+    </div>
+
+   
+  </section>
+
+  <script>
+    function filterGenre(genre) {
+      const cards = document.querySelectorAll('.book-card');
+      cards.forEach(card => {
+        card.style.display = card.classList.contains(genre) ? 'flex' : 'none';
+      });
+    }
+
+    function toggleLike(button) {
+      if (button.classList.contains('liked')) {
+        button.classList.remove('liked');
+        button.textContent = '❤ Like';
+      } else {
+        button.classList.add('liked');
+        button.textContent = '💖 Liked';
+      }
+    }
+
+    function toggleBookLike(button) {
+      if (button.classList.contains('book-liked')) {
+        button.classList.remove('book-liked');
+        button.textContent = '🤍 Like Book';
+      } else {
+        button.classList.add('book-liked');
+        button.textContent = '💖 Book Liked';
+      }
+    }
+
+    function submitComment(button) {
+      const parent = button.closest('.comments');
+      const textArea = parent.querySelector('textarea');
+      const commentList = parent.querySelector('.comment-list');
+      if (textArea.value.trim() !== "") {
+        const newComment = document.createElement('p');
+        newComment.textContent = "💬 " + textArea.value;
+        commentList.appendChild(newComment);
+        textArea.value = "";
+      }
+    }
+  </script>
+</body>
+</html>
